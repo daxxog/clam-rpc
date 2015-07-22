@@ -1,0 +1,39 @@
+{
+    "name"        : "clam-rpc",
+    "description" : "A command line RPC client for CLAMs.",
+    "homepage"    : "https://github.com/daxxog/clam-rpc",
+    "main"        : "clam-rpc.min.js",
+    "version"     : "0.0.1",
+    "engines": {
+        "node" : ">=0.10.33"
+    },
+    "maintainers": [{
+        "name"  : "David Volm",
+        "email" : "david@volminator.com",
+        "web"   : "http://daxxog.com/"
+    }],
+    "repository": {
+        "type" : "git",
+        "url"  : "https://github.com/daxxog/clam-rpc.git"
+    },
+    "devDependencies": {
+        "bitfactory": "*",
+        "stoptime": "*",
+        "uglify-js": "*",
+        "vows": "*"
+    },
+    "scripts": {
+        "build": "node make.js",
+        "test": "vows test/*",
+        "start": "node cli.js",
+        "prepublish": "npm run build"
+    },
+    "files": [
+        "cli.min.js",
+        "clam-rpc.min.js",
+        "bin/clam-rpc"
+    ],
+    "bin": {
+        "clam-rpc" : "bin/clam-rpc"
+    }
+}
