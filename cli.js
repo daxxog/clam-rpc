@@ -5,6 +5,6 @@
  * http://www.apache.org/licenses/LICENSE-2.0.html  
  */
 
-var ClamRpc = require('./clam-rpc.min.js');
+var ClamRpc = require('./clam-rpc.js');
 
 new ClamRpc();
