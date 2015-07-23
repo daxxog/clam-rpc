@@ -39,7 +39,7 @@
     "clam-rpc": "bin/clam-rpc"
   },
   "dependencies": {
-    "clamcoin": "^1.0.0",
+    "clamcoin": "^1.4.11",
     "string": "^3.3.0",
     "yargs": "^3.15.0"
   }
