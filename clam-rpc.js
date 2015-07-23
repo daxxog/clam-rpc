@@ -83,9 +83,9 @@
         this.rl.on('line', function(cmd) {
             var cmds = cmd.split(' '),
                 cb = 
-                function(err, help) {
+                function(err, res) {
                     if(!err) {
-                        console.log(help);
+                        console.log(res);
                     } else {
                         console.error(err);
                     }
