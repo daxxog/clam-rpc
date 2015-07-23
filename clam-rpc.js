@@ -66,7 +66,7 @@
         
         this.client = new clamcoin.Client({
             host: argv.host,
-            port: argv.port,
+            port: parseInt(argv.port, 10),
             user: argv.user,
             pass: argv.pass,
             timeout: parseInt(argv.timeout, 10)
