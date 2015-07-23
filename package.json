@@ -3,7 +3,7 @@
   "description": "A command line RPC client for CLAMs.",
   "homepage": "https://github.com/daxxog/clam-rpc",
   "main": "clam-rpc.min.js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "engines": {
     "node": ">=0.10.33"
   },

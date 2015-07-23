@@ -103,7 +103,6 @@
                         cmds = that._parse(cmds);
                         cmds.push(cb);
                         that.client.cmd.apply(that.client, cmds);
-                        console.log(cmds);
                     } else {
                         that.client.cmd(cmd, cb);
                     }
