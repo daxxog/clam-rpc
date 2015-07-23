@@ -23,6 +23,7 @@
     var clamcoin = require('clamcoin'),
         readline = require('readline'),
         yargs = require('yargs'),
+        S = require('string'),
         ClamRpc, argv;
         
     argv = 
@@ -61,6 +62,8 @@
         .argv;
     
     ClamRpc = function() {
+        var that = this;
+        
         this.client = new clamcoin.Client({
             host: argv.host,
             port: argv.port,
@@ -69,14 +72,54 @@
             timeout: argv.timeout
         });
         
-        this.client.cmd('help', function(err, help) {
-            console.log(err, help);
-        });
-        
-        /*this.rl = readline.createInterface({
+        this.rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout
-        });*/
+        });
+        
+       this.rl.setPrompt([argv.user, argv.host].join('@') + ' -> ');
+       this.rl.prompt();
+       
+        this.rl.on('line', function(cmd) {
+            var cmds = cmd.split(' '),
+                cb = 
+                function(err, help) {
+                    if(!err) {
+                        console.log(help);
+                    } else {
+                        console.error(err);
+                    }
+                    
+                    that.rl.prompt();
+                };
+            
+            switch(cmd) { //could put custom client commands here
+                case 'exit':
+                    that.rl.close();
+                    console.log('goodbye');
+                  break;
+                default:
+                    if(cmds.length > 1) {
+                        cmds = that._parse(cmds);
+                        cmds.push(cb);
+                        that.client.cmd.apply(that.client, cmds);
+                        console.log(cmds);
+                    } else {
+                        that.client.cmd(cmd, cb);
+                    }
+                  break;
+            }
+        });
+    };
+    
+    ClamRpc.prototype._parse = function(cmds) { //parse cmds
+        return cmds.map(function(cmd) {
+            if(S(cmd).isNumeric()) {
+                return parseInt(cmd, 10);
+            } else {
+                return cmd;
+            }
+        });
     };
     
     return ClamRpc;
