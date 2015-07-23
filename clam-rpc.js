@@ -116,6 +116,10 @@
         return cmds.map(function(cmd) {
             if(S(cmd).isNumeric()) {
                 return parseInt(cmd, 10);
+            } else if(cmd === 'true') {
+                return true;
+            } else if(cmd === 'false') {
+                return false;
             } else {
                 return cmd;
             }
