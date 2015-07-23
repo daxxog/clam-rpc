@@ -69,7 +69,7 @@
             port: argv.port,
             user: argv.user,
             pass: argv.pass,
-            timeout: argv.timeout
+            timeout: parseInt(argv.timeout, 10)
         });
         
         this.rl = readline.createInterface({
